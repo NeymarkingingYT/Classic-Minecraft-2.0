@@ -53,3 +53,31 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
+
+
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+// Load images from assets/
+const textures = {
+  cow: loadTexture("assets/cow.png"),
+  wood: loadTexture("assets/wood.png"),
+  stone: loadTexture("assets/stone.png"),
+  dirt: loadTexture("assets/dirt.png"),
+  grass: loadTexture("assets/grass.png")
+};
+
+function loadTexture(src) {
+  const img = new Image();
+  img.src = src;
+  return img;
+}
+
+// Once cow is loaded, assume all are ready and draw
+textures.cow.onload = () => {
+  ctx.drawImage(textures.grass, 0, 0);
+  ctx.drawImage(textures.dirt, 64, 0);
+  ctx.drawImage(textures.stone, 128, 0);
+  ctx.drawImage(textures.wood, 192, 0);
+  ctx.drawImage(textures.cow, 100, 100);
+};
